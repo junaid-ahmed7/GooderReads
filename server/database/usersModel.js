@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+//THIS IS OUR DATABASE FOR ALL USERS. THE ONLY ENTRY NOT REQUIRED IS THE TWO BOOKSHELVES, AS A USER WILL NOT HAVE ANY BOOKS WHEN THE NEW ACCOUNT IS MADE
+
 const usersSchema = new Schema({
   firstName: {
     type: String,

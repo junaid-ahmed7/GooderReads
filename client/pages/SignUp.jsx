@@ -1,14 +1,25 @@
 import React from "react";
 
+
+//COMPONENT RESPONSIBLE FOR ADDING NEW USERS TO THE DATA BASE
+
 const SignUp = () => {
+
+  //FORM HANDLER, GETS INVOKED WHEN THE FORM IS SUBMITTED(SUBMIT BUTTON IN FORM PRESSED)
   const formHandler = (e) => {
+
+    //PREVENT DEFAULT BEHAVIOUR OF RELOADING THE PAGE
     e.preventDefault();
+
+    //GETTING ALL THE FORM ELEMENT VALUES AND SAVING TO A VARIABLE. I WANTED TO DO THIS WITH THE FORM DATA OBJECT, BUT IT WASNT WORKING. CANT GET IT TO WORK BEFORE ON OTHER PROJECTS ASWELL FOR SOME REASON
     const firstName = document.getElementById("fname").value;
     const lastName = document.getElementById("lname").value;
     const email = document.getElementById("email").value;
     const age = document.getElementById("age").value;
     const passOne = document.getElementById("pass1").value;
     const passTwo = document.getElementById("pass2").value;
+
+    //BASIC VALIDATION TO CHECK IF PASSWORDS MATCH, PASSWORD IS OFF SUFFICIENT LENGTH AND USER IS OLD ENOUGH FOR AN ACCOUNT
     if (passOne !== passTwo) {
       alert("PASSWORDS DONT MATCH!!");
       return;
@@ -21,6 +32,8 @@ const SignUp = () => {
       alert("YOU ARE TOO YOUNG!!");
       return;
     }
+
+    //CREATING AN OBJECT USING ALL PREVIOUSLY CREATED VARIABLES, SO THAT WE CAN MAKE A POST REQUEST TO OUR DATABASE TO ADD THIS NEW USER
     const reqBody = {
       firstName,
       lastName,
@@ -28,6 +41,8 @@ const SignUp = () => {
       age,
       password: passOne,
     };
+    
+    ///FETCH REQUEST USING POST METHOD, TO OUR EXPRESS BACKEND ROUTE, BODY IS SENT AS JSON AS THAT IS THE STANDARD NORMALLY.
     fetch("/form", {
       headers: {
         "Content-Type": "application/json",
@@ -36,6 +51,8 @@ const SignUp = () => {
       body: JSON.stringify(reqBody),
     });
   };
+
+  //NOTHING SPECIAL ABOUT THIS FUNCTIONS RENDER, JUST A BASIC FORM
   return (
     <React.Fragment>
       <h1>SignUp Page!</h1>

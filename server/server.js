@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = 3000;
 
-//connecting to db
+//CONNECTING TO THE DATABASE
 mongoose
   .connect(
     "mongodb+srv://junaid:dzS50Os5DU3iP7hF@cluster0.vnwh8qf.mongodb.net/?retryWrites=true&w=majority",
@@ -17,17 +17,18 @@ mongoose
     console.log("MONGOOSE FAILED");
   });
 
-  //middleware imports
+  //IMPORTING MIDDLEWARE
   const userMiddleware = require("./controller/userController");
   const bookMiddleWare = require("./controller/bookController");
 
-/*
- * handle parsing request body
- */
+//HANDLE PARSING REQUEST BODIES
 app.use(express.json());
 
+//ROUTE FOR THE WHEN A USER PRESSES THE LOGIN BUTTON
 app.post("/login", userMiddleware.loginController, (req, res, next) => {
   console.log('POST LOGIN SUCCESS');
+
+  //WE SET THIS PROPERTY ON RES LOCALS TO BE EQUAL TO THE FOUND USER, SO THIS FIRST LINE WILL RUN IF THE USER WAS FOUND. OTHERWISE THE VALUE IS NULL SO WE WILL SEND A 400 ERROR AND THE USER WONT BE LOGGED IN
   if (res.locals.user){
     res.status(200).send(res.locals.user);
   } else {
@@ -35,21 +36,25 @@ app.post("/login", userMiddleware.loginController, (req, res, next) => {
   }
 });
 
+//ROUTE FOR WHEN USER TRIES TO SIGNUP
 app.post("/form", userMiddleware.signUpController, (req, res, next) => {
   console.log("POST SIGNUP SUCCESS");
+
+  //SINCE PRETTY MUCH ALL OUR VAIDATION ERROR HANDLING WAS DONE ON THE FRONTEND, IF WE REACH THIS LINE, THAT MEANS EVERYTHING WENT WELL, BOTH WITH THE VALIDATION AND CREATING THE ENTRY IN THE DATABASE, SO WE CAN JUST SEND A 200 CODE BACK
   res.status(200).send("success!");
 });
 
 app.post("/books", bookMiddleWare.populateShelf, (req, res, next) => {
   console.log('IN POST BOOKS');
   res.status(200).send('SUCCESS!');
+});
+
+app.get('/books/:id', bookMiddleWare.getBooks, (req, res, next) => {
+  console.log('GOT BOOKS');
+  res.status(200).send(res.locals);
 })
 
-
-
-
-//global error handler
-
+//GLOBAL ERROR HANDLING
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: "Express error handler caught unknown middleware error",
@@ -61,9 +66,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-/*
- * start server
- */
+//STARTING THE BACKEND SERVER
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });

@@ -12,7 +12,7 @@ bookController.populateShelf = (req, res, next) => {
     (err, results) => {
       if (err) {
         return next({
-          log: "Express error handler caught login middleware error",
+          log: "Express error handler caught populateShelf middleware error",
           status: 400,
           message: { err: "account query fail occurred" },
         });
@@ -20,6 +20,22 @@ bookController.populateShelf = (req, res, next) => {
       return next();
     }
   );
+};
+
+bookController.getBooks = (req, res, next) => {
+  const { id } = req.params;
+  dataBase.findById(id, (err, results) => {
+    if (err) {
+      return next({
+        log: "Express error handler caught getBooks middleware error",
+        status: 400,
+        message: { err: "account query fail occurred" },
+      });
+    }
+    res.locals.readShelf = results.bookShelfRead;
+    res.locals.unreadShelf = results.bookShelfUnread;
+    return next();
+  });
 };
 
 module.exports = bookController;

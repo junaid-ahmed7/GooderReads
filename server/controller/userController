@@ -1,8 +1,12 @@
 const dataBase = require("../database/usersModel");
 
+//EMPTY OBJECT TO HOLD OUR MIDDLEWARE
 const userController = {};
 
+//MIDDLEWARE RUNS WHEN THE SIGNUP POST ROUTE IS REQUESTED
 userController.signUpController = (req, res, next) => {
+
+  //CREATE A DATABASE ENTRY USING ALL THE PASSED IN INFO ON THE REQUEST BODY THAT WE SET ON THE FRONTEND IN THE SIGNUP COMPONENT
   dataBase.create({ ...req.body }, (err, results) => {
     if (err) {
       return next({
@@ -11,11 +15,15 @@ userController.signUpController = (req, res, next) => {
         message: { err: "account creation fail occurred" },
       });
     }
+    //IF SUCCESSFUL, JUST RETURN NEXT
     return next();
   });
 };
 
+//MIDDLEWARE RUNS WHEN THE LOGIN POST ROUTE IS REQUESTED
 userController.loginController = (req, res, next) => {
+
+  //FIND OUT IF THE USER EXISTS IN THE DATABASE, THE REQ BODY HAS BOTH THE EMAIL AND PASSWORD IN IT SO BOTH OF THOSE HAVE TO MATCH
   dataBase.findOne({ ...req.body }, (err, results) => {
     if (err) {
       return next({
@@ -24,6 +32,7 @@ userController.loginController = (req, res, next) => {
         message: { err: "account query fail occurred" },
       });
     }
+    //IF USER FOUND, SET A PROPERTY ON THE RES LOCALS TO THE FOUND USER, RESULTS WILL BE NULL IF THE USER WAS NOT FOUND
     if (results !== null) {
       res.locals.user = results;
     }

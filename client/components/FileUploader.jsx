@@ -2,8 +2,6 @@ import React, { useState } from "react";
 const csvParse = require("papaparse");
 
 const FileUploader = (props) => {
-  const [readBooks, setReadBooks] = useState([]);
-  const [unreadBooks, setUnreadBooks] = useState([]);
   const readBooksArr = [];
   const unreadBooksArr = [];
   const fileUploaded = (e) => {
@@ -49,39 +47,15 @@ const FileUploader = (props) => {
           },
           method: "POST",
           body: JSON.stringify([readBooksArr, unreadBooksArr, props]),
+        }).then((data) => {
+          props.onClick();
         });
-        setUnreadBooks(unreadBooksArr);
-        setReadBooks(readBooksArr);
       },
     });
   };
   return (
     <React.Fragment>
       <input id="fileItem" type="file" onChange={fileUploaded} />
-      {readBooks.map((book) => {
-        return (
-          <ul key={book.ISBN}>
-            <li>Title: {book.title}</li>
-            <li>Author: {book.author}</li>
-            <li>Your Rating: {book.rating}</li>
-            <li>Average Rating: {book.avgRating}</li>
-            <li># of Pages: {book.pageCount}</li>
-            <li>Year of Publication: {book.yearOfPub}</li>
-            <li>Date Read: {book.dateRead}</li>
-          </ul>
-        );
-      })}
-      {unreadBooks.map((book) => {
-        return (
-          <ul key={book.ISBN}>
-            <li>Title: {book.title}</li>
-            <li>Author: {book.author}</li>
-            <li>Average Rating: {book.avgRating}</li>
-            <li># of Pages: {book.pageCount}</li>
-            <li>Year of Publication: {book.yearOfPub}</li>
-          </ul>
-        );
-      })}
     </React.Fragment>
   );
 };

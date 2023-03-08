@@ -2,6 +2,8 @@ import React from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 
+//THIS IS THE HOMEPAGE COMPONENT. IT REALLY DOESNT HAVE MUCH GOING ON, IT RENDERS THE LOGIN COMPONENT AND HAS A BUTTON THAT CAN ROUTE US TO THE SIGNUP COMPONENT IF USER DOESNT HAVE AN ACCOUNT
+
 const Home = () => {
   return (
     <React.Fragment>
