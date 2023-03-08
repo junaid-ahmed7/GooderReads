@@ -1,0 +1,25 @@
+const dataBase = require("../database/usersModel");
+
+const bookController = {};
+
+bookController.populateShelf = (req, res, next) => {
+  const id = req.body[2].props._id;
+  const readShelf = req.body[0];
+  const unreadShelf = req.body[1];
+  dataBase.findByIdAndUpdate(
+    id,
+    { bookShelfRead: readShelf, bookShelfUnread: unreadShelf },
+    (err, results) => {
+      if (err) {
+        return next({
+          log: "Express error handler caught login middleware error",
+          status: 400,
+          message: { err: "account query fail occurred" },
+        });
+      }
+      return next();
+    }
+  );
+};
+
+module.exports = bookController;

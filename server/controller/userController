@@ -1,0 +1,34 @@
+const dataBase = require("../database/usersModel");
+
+const userController = {};
+
+userController.signUpController = (req, res, next) => {
+  dataBase.create({ ...req.body }, (err, results) => {
+    if (err) {
+      return next({
+        log: "Express error handler caught signup middleware error",
+        status: 400,
+        message: { err: "account creation fail occurred" },
+      });
+    }
+    return next();
+  });
+};
+
+userController.loginController = (req, res, next) => {
+  dataBase.findOne({ ...req.body }, (err, results) => {
+    if (err) {
+      return next({
+        log: "Express error handler caught login middleware error",
+        status: 400,
+        message: { err: "account query fail occurred" },
+      });
+    }
+    if (results !== null) {
+      res.locals.user = results;
+    }
+    return next();
+  });
+};
+
+module.exports = userController;
