@@ -1,6 +1,7 @@
 import React from "react";
 import BarChart from "react-bar-chart";
 
+//CHART FOR BOOKS READ BY PAGE LENGTH
 const PageChart = (props) => {
   const { under100, under250, under500, under750, under1000, under1500 } =
     props.props;

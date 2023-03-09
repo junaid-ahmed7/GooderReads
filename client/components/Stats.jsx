@@ -1,15 +1,19 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import Chart from "./Chart";
+import Chart from "./Charts/Chart";
 import "../../stylesheets/Stats.scss";
-import PageChart from "./PagesChart";
-import Star from "./Star";
-import StarChart from "./StarChart";
-import PubChart from "./PubChart";
+import PageChart from "./Charts/PagesChart";
+import Star from "./Stars/Star";
+import StarChart from "./Charts/StarChart";
+import PubChart from "./Charts/PubChart";
 
+//THIS WHOLE COMPONENT IS RESPONSIBLE FOR GENERATING ALL THE STATS ON OUR READING, AND ALL THE CHILD COMPONENT RENDERS
 const Stats = () => {
+  //WE USE THE USE LOCATION HOOK TO GET ACCESS TO THE PROPS THAT WERE PASSED DOWN USING REACT ROUTING LINKS
   const location = useLocation();
   const books = location.state;
+
+  //YES THERE ARE ALOT OF VARIABLES HERE, BUT THEY ARE ALL NEEDED IF WE WANT TO GENERATE STATISTICS, SO IT IS WHAT IT IS. THE STATS ARE FOR PAGE LENGTH, RATINGS, YEAR OF PUBLICATION ETC ETC.
   let yourAvgRating = 0;
   let booksAvgRating = 0;
   let avgPageLength = 0;
@@ -40,6 +44,8 @@ const Stats = () => {
   let thousands = 0;
   let nineties = 0;
   let old = 0;
+
+  //WE LOOP THROUGH OUR READ BOOKS AND INCREMENT THE CORRESPONDING STATS ACCORDINGLY
   for (let i = 0; i < books.length; i++) {
     const pubYear = Number(books[i].yearOfPub);
     if (pubYear > 2019) {
@@ -128,6 +134,8 @@ const Stats = () => {
   yourAvgRating = yourAvgRating / books.length;
   booksAvgRating = (booksAvgRating / books.length).toFixed(2);
   avgPageLength = Math.floor(avgPageLength / books.length);
+
+  //IF NO BOOKS HAVE BEEN READING, THIS IS JUST AN EDGECASE TO HAVE A MESSAGE INSTEAD OF IT DISPLAYS NAN OR ANYTHING ELSE
   if (isNaN(yourAvgRating) || isNaN(booksAvgRating) || isNaN(avgPageLength)) {
     yourAvgRating = "n/a, because you haven't read anything yet :(";
     booksAvgRating = "n/a, because you haven't read anything yet :(";
@@ -136,6 +144,8 @@ const Stats = () => {
   if (shortestBookPages === Infinity) {
     shortestBookPages = 0;
   }
+
+  //CONSTRUCTING OBJECTS FOR EACH OF OUR STATISTIC COMPONENTS, SO THAT WE CAN PASS ALL THESE DOWN USING PROPS
   const yearsOfReading = {
     twenty19,
     twenty20,
@@ -165,6 +175,7 @@ const Stats = () => {
     nineties,
     old,
   };
+  //JUST RENDERS SOME FUN FACTS AND THEN ALL OUR STAT CHARTS
   return (
     <React.Fragment>
       <h1 id="stats__header">Welcome to your Stats Page!</h1>

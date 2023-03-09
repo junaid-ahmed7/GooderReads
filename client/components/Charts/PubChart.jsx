@@ -1,15 +1,15 @@
 import React from "react";
 import BarChart from "react-bar-chart";
-import Star from "./Star";
 
-const StarChart = (props) => {
-  const { oneStar, twoStar, threeStar, fourStar, fiveStar } = props.props;
+//CHART FOR BOOKS READ BY YEAR OF PUBLICATION
+const PubChart = (props) => {
+  const { twenty20s, twenty10s, thousands, nineties, old } = props.props;
   const data = [
-    { text: "⭐", value: oneStar },
-    { text: "⭐⭐", value: twoStar },
-    { text: "⭐⭐⭐", value: threeStar },
-    { text: "⭐⭐⭐⭐", value: fourStar },
-    { text: "⭐⭐⭐⭐⭐", value: fiveStar },
+    { text: "2020s", value: twenty20s },
+    { text: "2010s", value: twenty10s },
+    { text: "2000s", value: thousands },
+    { text: "90s", value: nineties },
+    { text: "Ancient", value: old },
   ];
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   return (
@@ -27,4 +27,4 @@ const StarChart = (props) => {
   );
 };
 
-export default StarChart;
+export default PubChart;

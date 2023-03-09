@@ -9,6 +9,8 @@ const FileUploader = (props) => {
   //   const APIKEY = "&key=AIzaSyBQz3PWiOeznmLhXa2fRNciUrwPJpYbea0";
   const readBooksArr = [];
   const unreadBooksArr = [];
+
+  //THIS IS THE MAIN FUNCTION THAT USES PAPAPARSE TO PARSE THROUGH OUR UPLOADED CSV FILE. ON COMPLETION OF THE PARSE, IT LOOPS THROUGH THE RESULTS AND CREATES OBJECTS FOR EACH INDIVIDUAL BOOK AFTER LOOKING AT THE DATA, AND PUSHES ALL OF THAT INTO TWO ARRAYS, ONE FOR READ BOOKS AND ONE FOR UNREAD.
   const fileUploaded = (e) => {
     const file = document.getElementById("fileItem").files[0];
     csvParse.parse(file, {
@@ -69,6 +71,7 @@ const FileUploader = (props) => {
             unreadBooksArr.push(bookObj);
           }
         }
+        //ONCE BOTH ARRAYS HAVE BEEN FULLY CREATED, WE MAKE A POST REQUEST TO OUR BACKEND WHICH WILL POPULATES THE LOGGED IN INDIVIDUALS BOOKS IN THE DATABASE, AND THEN IT WILL GO UP AND SET THE STATE OF THE PARENT COMPONENT USING THE FUNCTION THAT WAS PASSED AS A PROP DOWN TO THIS COMPONENT. WE PASS DOWN THE PROPS OBJECT HERE IN THE BODY, SO THAT THE BACKEND CAN FIND THE USER WHO IS LOGGED IN WHEN IT QUERIES THE DATABASE
         fetch("/books", {
           headers: {
             "Content-Type": "application/json",
@@ -81,6 +84,7 @@ const FileUploader = (props) => {
       },
     });
   };
+  //THIS IS JUST AN INPUT ELEMENT WITH A TYPE OF FILE, WHICH LETS US UPLOAD A DOCUMENT FROM LOCAL STORAGE
   return (
     <React.Fragment>
       <div id="upload__div">

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import FileUploader from "../components/FileUploader";
-import Book from "../components/Book";
-import UnreadBook from "../components/UnreadBook";
+import Book from "../components/Book/Book";
+import UnreadBook from "../components/Book/UnreadBook";
 import "../../stylesheets/Userpage.scss";
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const UserPage = () => {
   const [readBooks, setReadBooks] = useState([]);
   const [unreadBooks, setUnreadBooks] = useState([]);
 
-  //THIS FUNCTION IS SO THAT WE CAN JUST FETCH OUR BOOKS FROM THE DATABASE, WE DONT HAVE TO ACTUALLY DO A FILE UPLOAD WHEN WE WANT TO GET OUR BOOKS.
+  //THIS FUNCTION IS SO THAT WE CAN JUST FETCH OUR BOOKS FROM THE DATABASE, WE DONT HAVE TO ACTUALLY DO A FILE UPLOAD WHEN WE WANT TO GET OUR BOOKS. IT SENDS THE ID DOWN SO THE BACKEND KNOWS FROM WHICH USER TO FETCH THE BOOKS FROM
   const bookFetch = () => {
     fetch(`/books/${id}`).then((data) => {
       data.json().then((data) => {
@@ -46,6 +46,7 @@ const UserPage = () => {
       <h1 id="user__header">Welcome to your bookshelf, {name}!</h1>
       <FileUploader props={location.state} onClick={onFileUpload} />
       {/* UPON A RERENDER WHEN THE STATE IS POPULATED WITH THE BOOKS, THESE TWO MAPS WILL RUN AND THAT WILL CREATE LISTS FOR ALL OUR BOOKS USING OUR BOOK COMPONENTS. THE REASON THERE ARE TWO COMPONENTS IS BECAUSE THE UNREAD BOOK DOESNT HAVE ALL THE SAME VALUES*/}
+      {/* THIS LINK IS A LINK TO THE STATS PAGE, THE STATE BEING PASSED DOWN IS JUST AN ARRAY OF ALL OUR READ BOOKS, SINCE WE DONT NEED TO MAKE ANY STATS FOR ANY UNREAD BOOKS */}
       <div id="stats__div">
         <p id="your__stats">Curious about what you have been reading?</p>
         <button id="book__stats">
@@ -54,7 +55,7 @@ const UserPage = () => {
           </Link>
         </button>
       </div>
-      <section id='book__container'>
+      <section id="book__container">
         <span id="your__books">Your Read Books:</span>
         <button id="book__fetch" onClick={bookFetch}>
           Fetch My Books!

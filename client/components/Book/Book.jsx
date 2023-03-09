@@ -1,7 +1,7 @@
 import React from "react";
-import Star from "./Star";
-import EmptyStar from "./EmptyStar";
-import "../../stylesheets/Book.scss";
+import Star from "../Stars/Star";
+import EmptyStar from "../Stars/EmptyStar";
+import "../../../stylesheets/Book.scss";
 
 //COMPONENT TO CREATE BOOK ITEMS FOR EACH BOOK THAT HAS BEEN READ
 const Book = (props) => {

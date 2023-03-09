@@ -1,5 +1,5 @@
 import React from "react";
-import "../../stylesheets/Star.scss";
+import "../../../stylesheets/Star.scss";
 
 //COMPONENT TO RENDER STARS FOR THE STAR RATING
 const Star = (props) => {

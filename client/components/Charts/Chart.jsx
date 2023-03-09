@@ -1,6 +1,7 @@
 import BarChart from "react-bar-chart";
 import React from "react";
 
+//CHART FOR BOOKS READ BY YEAR OF READING
 const Chart = (props) => {
   const { twenty19, twenty20, twenty21, twenty22, twenty23 } = props.props;
   const data = [

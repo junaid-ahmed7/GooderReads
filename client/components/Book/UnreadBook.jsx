@@ -1,7 +1,7 @@
 import React from "react";
-import EmptyStar from "./EmptyStar";
-import Star from "./Star";
-import "../../stylesheets/Book.scss";
+import EmptyStar from "../Stars/EmptyStar";
+import Star from "../Stars/Star";
+import "../../../stylesheets/Book.scss";
 
 //COMPONENT FOR EACH BOOK THAT IS UNREAD
 const UnreadBook = (props) => {

@@ -1,11 +1,19 @@
 const dataBase = require("../database/usersModel");
 
+//OBJECT TO HOLD OUR MIDDLEWARE
 const bookController = {};
 
+//METHOD TO POPULATE BOTH SHELVES IN OUR DATABASE WHEN FILE IS UPLOADED
 bookController.populateShelf = (req, res, next) => {
+
+  //GRAB THE ID THAT WAS PASSED DOWN, SO WE CAN FIND THE CORRESPONDING USER IN OUR DATABASE
   const id = req.body[2].props._id;
+
+  //GRAB EACH BOOKSHELF
   const readShelf = req.body[0];
   const unreadShelf = req.body[1];
+
+  //QUERY THE DB AND UPDATE BOTH THE SHELVES
   dataBase.findByIdAndUpdate(
     id,
     { bookShelfRead: readShelf, bookShelfUnread: unreadShelf },
@@ -22,7 +30,10 @@ bookController.populateShelf = (req, res, next) => {
   );
 };
 
+//QUERY THE DB AND GET THE BOOKS FROM IT
 bookController.getBooks = (req, res, next) => {
+
+  //DECONSTRUCTING ID FROM THE PARAMS
   const { id } = req.params;
   dataBase.findById(id, (err, results) => {
     if (err) {
@@ -32,6 +43,7 @@ bookController.getBooks = (req, res, next) => {
         message: { err: "account query fail occurred" },
       });
     }
+    //CREATING PROPERTIES ON THE RES LOCALS SO THAT WE CAN SEND THEM BACK TO OUR FRONTEND
     res.locals.readShelf = results.bookShelfRead;
     res.locals.unreadShelf = results.bookShelfUnread;
     return next();

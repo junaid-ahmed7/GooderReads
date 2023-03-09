@@ -17,42 +17,38 @@ mongoose
     console.log("MONGOOSE FAILED");
   });
 
-  //IMPORTING MIDDLEWARE
-  const userMiddleware = require("./controller/userController");
-  const bookMiddleWare = require("./controller/bookController");
+//IMPORTING MIDDLEWARE
+const userMiddleware = require("./controller/userController");
+const bookMiddleWare = require("./controller/bookController");
 
 //HANDLE PARSING REQUEST BODIES
 app.use(express.json());
 
 //ROUTE FOR THE WHEN A USER PRESSES THE LOGIN BUTTON
 app.post("/login", userMiddleware.loginController, (req, res, next) => {
-  console.log('POST LOGIN SUCCESS');
-
   //WE SET THIS PROPERTY ON RES LOCALS TO BE EQUAL TO THE FOUND USER, SO THIS FIRST LINE WILL RUN IF THE USER WAS FOUND. OTHERWISE THE VALUE IS NULL SO WE WILL SEND A 400 ERROR AND THE USER WONT BE LOGGED IN
-  if (res.locals.user){
+  if (res.locals.user) {
     res.status(200).send(res.locals.user);
   } else {
-    res.status(400).send('NOT GOT')
+    res.status(400).send("NOT GOT");
   }
 });
 
 //ROUTE FOR WHEN USER TRIES TO SIGNUP
 app.post("/form", userMiddleware.signUpController, (req, res, next) => {
-  console.log("POST SIGNUP SUCCESS");
-
   //SINCE PRETTY MUCH ALL OUR VAIDATION ERROR HANDLING WAS DONE ON THE FRONTEND, IF WE REACH THIS LINE, THAT MEANS EVERYTHING WENT WELL, BOTH WITH THE VALIDATION AND CREATING THE ENTRY IN THE DATABASE, SO WE CAN JUST SEND A 200 CODE BACK
   res.status(200).send("success!");
 });
 
+//ROUTE FOR ADDING BOOKS TO THE USERS SHELF WHEN WE UPLOAD THE CSV FILE
 app.post("/books", bookMiddleWare.populateShelf, (req, res, next) => {
-  console.log('IN POST BOOKS');
-  res.status(200).send('SUCCESS!');
+  res.status(200).send("SUCCESS!");
 });
 
-app.get('/books/:id', bookMiddleWare.getBooks, (req, res, next) => {
-  console.log('GOT BOOKS');
+//THIS ROUTE RUNS WHEN THE FETCH MY BOOKS BUTTON IS CLICKED, IT WILL QUERY THE DATABASE USING THE ID THAT IS PASSED DOWN AND THEN SEND BACK THE BOOKSHELVES ON THE RES LOCALS OBJECT
+app.get("/books/:id", bookMiddleWare.getBooks, (req, res, next) => {
   res.status(200).send(res.locals);
-})
+});
 
 //GLOBAL ERROR HANDLING
 app.use((err, req, res, next) => {
