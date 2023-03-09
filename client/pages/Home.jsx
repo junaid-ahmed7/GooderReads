@@ -8,6 +8,7 @@ import "../../stylesheets/Home.scss";
 const Home = () => {
   return (
     <React.Fragment>
+      <button></button>
       <h1 id="main__header">کتاب</h1>
       <div id="main__login">
         <Login></Login>
@@ -15,7 +16,7 @@ const Home = () => {
       <div id="main__signup">
         <h2 id="signup__header">Not a member?</h2>
         <button id="signup__button">
-          <Link id='link' to="/signup">
+          <Link id="link" to="/signup">
             Sign Up!
           </Link>
         </button>

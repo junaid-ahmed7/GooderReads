@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../stylesheets/Signup.scss";
+
 
 //COMPONENT RESPONSIBLE FOR ADDING NEW USERS TO THE DATA BASE
 
@@ -54,6 +56,7 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <h1 id="signup__header">SignUp Page!</h1>
+      <button id='home__button'><Link id='link' to='/'>Go Back</Link></button>
       <form method="post" onSubmit={formHandler} id="signup__form">
         <div id="signup__input">
             <label>

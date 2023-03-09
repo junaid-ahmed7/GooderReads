@@ -14,11 +14,16 @@
   margin: 5px;
 }
 
-#pass1, #pass2, #email, #age, #lname, #fname {
-    width: 100%;
-    margin-top: 0.5rem;
-    display: block;
-    margin-bottom: 0.5rem;
+#pass1,
+#pass2,
+#email,
+#age,
+#lname,
+#fname {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 #signup__button {
@@ -30,4 +35,11 @@
   width: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+#home__button {
+  text-align: center;
+  background-color: #f8f4e3;
+  padding: 0.5rem;
+  border-radius: 10%;
 }
