@@ -1,0 +1,35 @@
+#secondary__header {
+  font-size: 2rem;
+}
+
+#secondary__p {
+  font-size: 1.2rem;
+}
+
+#form__inputs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#login__button {
+  background-color: #f8f4e3;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#loginpass,
+#loginemail {
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 5px;
+  margin-top: 5px;
+}
+
+input::placeholder {
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.5;
+  color: black;
+}

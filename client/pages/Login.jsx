@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../../stylesheets/Login.scss";
 
 //COMPONENT RESPONSIBLE FOR LOGGING IN OUR USER, IF THEY ALREADY HAVE AN ACCOUNT
 const Login = () => {
-
   //STATE FOR WETHER OR NOT USER IS LOGGED IN, WILL DEFAULT TO FALSE OBVS
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -12,7 +12,6 @@ const Login = () => {
 
   //LOGIN HANDLER FUNCTION
   const loginHandler = (e) => {
-
     //PREVENT THE PAGE FROM RELOADING UPON SUBMIT
     e.preventDefault();
 
@@ -35,7 +34,6 @@ const Login = () => {
       body: JSON.stringify(reqBody),
     })
       .then((res) => {
-        
         //ONLY IF THE STATUS WAS 200, IE: THE USER DOES HAVE AN ACCOUNT, WE WILL SET THE STATE TO LOGGED IN AND CREATE THE USER OBJECT. NOT SURE IF THE RETURN IS NECESSARY HERE BUT I DONT WANT TO TOUCH IT RIGHT NOW.
         if (res.status === 200) {
           res.json().then((data) => {
@@ -44,14 +42,12 @@ const Login = () => {
             return;
           });
         } else {
-          
           //USER DID NOT HAVE A MATCHING ENTRY IN THE DB, SO NO LOG IN
           alert("YOU DONT HAVE AN ACCOUNT!");
           return;
         }
       })
       .catch((err) => {
-
         //BASIC ERROR HANDLER IF POST REQ FAILS
         console.log(err);
       });
@@ -61,45 +57,49 @@ const Login = () => {
   if (loggedIn) {
     return (
       <div>
-        <button>
+        <button id="login__button">
           {/* PASSING DOWN THE USER OBJECT TO THE SIGNUP PAGE SO IT KNOWS WHAT USER THE PAGE IS FOR, AND CAN RENDER DATA ACCORDING TO THAT USER */}
-          <Link state={user} to="/userpage">Your Account</Link>
+          <Link id="link" state={user} to="/userpage">
+            Your Account
+          </Link>
         </button>
       </div>
     );
   }
-  
+
   //JUST A BASIC LOGIN FORM, NOTHING TO NOTE
   return (
     <React.Fragment>
-      <h2>Already a member?</h2>
-      <p>Login:</p>
-      <form onSubmit={loginHandler}>
-        <div>
-          <label>
-            Email:<span> </span>
-          </label>
-          <input
-            type="email"
-            required
-            autoComplete="off"
-            id="loginemail"
-            placeholder="youremail@email.com"
-          />
+      <h2 id="secondary__header">Already a member?</h2>
+      <p id="secondary__p">Login:</p>
+      <form onSubmit={loginHandler} id="login__form">
+        <div id="form__inputs">
+          <div>
+            <label>
+              Email:<span> </span>
+            </label>
+            <input
+              type="email"
+              required
+              autoComplete="off"
+              id="loginemail"
+              placeholder="youremail@email.com"
+            />
+          </div>
+          <div>
+            <label>
+              Password:<span> </span>
+            </label>
+            <input
+              type="password"
+              required
+              autoComplete="off"
+              id="loginpass"
+              placeholder="*******"
+            />
+          </div>
         </div>
-        <div>
-          <label>
-            Password:<span> </span>
-          </label>
-          <input
-            type="password"
-            required
-            autoComplete="off"
-            id="loginpass"
-            placeholder="*******"
-          />
-        </div>
-        <button>Login</button>
+        <button id="login__button">Login</button>
       </form>
     </React.Fragment>
   );

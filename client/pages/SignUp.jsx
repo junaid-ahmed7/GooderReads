@@ -1,13 +1,11 @@
 import React from "react";
-
+import "../../stylesheets/Signup.scss";
 
 //COMPONENT RESPONSIBLE FOR ADDING NEW USERS TO THE DATA BASE
 
 const SignUp = () => {
-
   //FORM HANDLER, GETS INVOKED WHEN THE FORM IS SUBMITTED(SUBMIT BUTTON IN FORM PRESSED)
   const formHandler = (e) => {
-
     //PREVENT DEFAULT BEHAVIOUR OF RELOADING THE PAGE
     e.preventDefault();
 
@@ -41,7 +39,7 @@ const SignUp = () => {
       age,
       password: passOne,
     };
-    
+
     ///FETCH REQUEST USING POST METHOD, TO OUR EXPRESS BACKEND ROUTE, BODY IS SENT AS JSON AS THAT IS THE STANDARD NORMALLY.
     fetch("/form", {
       headers: {
@@ -55,36 +53,38 @@ const SignUp = () => {
   //NOTHING SPECIAL ABOUT THIS FUNCTIONS RENDER, JUST A BASIC FORM
   return (
     <React.Fragment>
-      <h1>SignUp Page!</h1>
-      <form method="post" onSubmit={formHandler}>
-        <div>
-          <div>
+      <h1 id="signup__header">SignUp Page!</h1>
+      <form method="post" onSubmit={formHandler} id="signup__form">
+        <div id="signup__input">
             <label>
               First Name:<span> </span>
             </label>
-            <input
-              type="text"
-              required
-              autoComplete="off"
-              id="fname"
-              placeholder="your first name"
-            />
-          </div>
-
-          <div>
-            <label>Last Name:<span> </span></label>
-            <input
-              type="text"
-              required
-              autoComplete="off"
-              id="lname"
-              placeholder="your last name"
-            />
-          </div>
+          <input
+            type="text"
+            required
+            autoComplete="off"
+            id="fname"
+            placeholder="your first name"
+          />
         </div>
 
-        <div>
-          <label>Email Address:<span> </span></label>
+        <div id="signup__input">
+            <label>
+              Last Name:<span> </span>
+            </label>
+          <input
+            type="text"
+            required
+            autoComplete="off"
+            id="lname"
+            placeholder="your last name"
+          />
+        </div>
+
+        <div id="signup__input">
+            <label>
+              Email Address:<span> </span>
+            </label>
           <input
             type="email"
             required
@@ -94,13 +94,23 @@ const SignUp = () => {
           />
         </div>
 
-        <div>
-          <label>Age:<span> </span></label>
-          <input type="number" required autoComplete="off" id="age" />
+        <div id="signup__input">
+            <label>
+              Age:<span> </span>
+            </label>
+          <input
+            placeholder="#"
+            type="number"
+            required
+            autoComplete="off"
+            id="age"
+          />
         </div>
 
-        <div>
-          <label>Set A Password:<span> </span></label>
+        <div id="signup__input">
+            <label>
+              Set A Password:<span> </span>
+            </label>
           <input
             type="password"
             required
@@ -108,7 +118,11 @@ const SignUp = () => {
             id="pass1"
             placeholder="*******"
           />
-          <label>Type Password Again:<span> </span></label>
+        </div>
+        <div id="signup__input">
+            <label>
+              Type Password Again:<span> </span>
+            </label>
           <input
             type="password"
             required
@@ -118,7 +132,9 @@ const SignUp = () => {
           />
         </div>
 
-        <button type="submit">Get Started</button>
+        <button id="signup__button" type="submit">
+          Get Started
+        </button>
       </form>
     </React.Fragment>
   );

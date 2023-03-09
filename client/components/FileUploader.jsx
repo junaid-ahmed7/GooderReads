@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 const csvParse = require("papaparse");
+import "../../stylesheets/FileUploader.scss";
 
 const FileUploader = (props) => {
   const readBooksArr = [];
@@ -55,7 +56,11 @@ const FileUploader = (props) => {
   };
   return (
     <React.Fragment>
-      <input id="fileItem" type="file" onChange={fileUploaded} />
+      <div id="upload__div">
+        <p id="upload__text">Have a GoodReads account already?</p>
+        <p id="upload__text">Upload your entire shelf below!</p>
+        <input id="fileItem" type="file" onChange={fileUploaded} />
+      </div>
     </React.Fragment>
   );
 };

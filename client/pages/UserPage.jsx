@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import FileUploader from "../components/FileUploader";
+import Book from "../components/Book";
+import UnreadBook from "../components/UnreadBook";
+import "../../stylesheets/Userpage.scss";
 
 //THIS IS THE USERS OWN PERSONAL ACCOUNT PAGE, THE USE LOCATION IMPORT AT THE TOP IS WHAT ALLOWS US TO GET THE USER OBJECT THAT WE CREATED ON THE PREVIOUS LOGIN COMPONENT
 const UserPage = () => {
@@ -39,37 +42,41 @@ const UserPage = () => {
   };
   return (
     <React.Fragment>
-      <h1>Welcome to your bookshelf {name}!</h1>
+      <h1 id="user__header">Welcome to your bookshelf, {name}!</h1>
       <FileUploader props={location.state} onClick={onFileUpload} />
-      {/* UPON A RERENDER WHEN THE STATE IS POPULATED WITH THE BOOKS, THESE TWO MAPS WILL RUN AND THAT WILL CREATE LISTS FOR ALL OUR BOOKS */}
+      {/* UPON A RERENDER WHEN THE STATE IS POPULATED WITH THE BOOKS, THESE TWO MAPS WILL RUN AND THAT WILL CREATE LISTS FOR ALL OUR BOOKS USING OUR BOOK COMPONENTS. THE REASON THERE ARE TWO COMPONENTS IS BECAUSE THE UNREAD BOOK DOESNT HAVE ALL THE SAME VALUES*/}
       <section>
-        <button onClick={bookFetch}>Fetch My Books!</button>
-        <p>Your Read Books:</p>
+        <button id="book__fetch" onClick={bookFetch}>
+          Fetch My Books!
+        </button>
+        <p id="your__books">Your Read Books:</p>
         {readBooks.map((book) => {
           return (
-            <ul key={book.ISBN}>
-              <li>Title: {book.title}</li>
-              <li>Author: {book.author}</li>
-              <li>Your Rating: {book.rating}</li>
-              <li>Average Rating: {book.avgRating}</li>
-              <li># of Pages: {book.pageCount}</li>
-              <li>Year of Publication: {book.yearOfPub}</li>
-              <li>Date Read: {book.dateRead}</li>
-            </ul>
+            <Book
+              key={book.ISBN}
+              title={book.title}
+              author={book.author}
+              rating={book.rating}
+              avgRating={book.avgRating}
+              pageCount={book.pageCount}
+              yearOfPub={book.yearOfPub}
+              dateRead={book.dateRead}
+            ></Book>
           );
         })}
       </section>
       <section>
-        <p>Your Unread Books:</p>
+        <p id="your__books">Your Unread Books:</p>
         {unreadBooks.map((book) => {
           return (
-            <ul key={book.ISBN}>
-              <li>Title: {book.title}</li>
-              <li>Author: {book.author}</li>
-              <li>Average Rating: {book.avgRating}</li>
-              <li># of Pages: {book.pageCount}</li>
-              <li>Year of Publication: {book.yearOfPub}</li>
-            </ul>
+            <UnreadBook
+              key={book.ISBN}
+              title={book.title}
+              author={book.author}
+              avgRating={book.avgRating}
+              pageCount={book.pageCount}
+              yearOfPub={book.yearOfPub}
+            ></UnreadBook>
           );
         })}
       </section>

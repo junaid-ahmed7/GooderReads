@@ -1,0 +1,33 @@
+body {
+  background-color: #2D93AD;
+  box-sizing: border-box;
+}
+
+#main__header {
+  text-align: center;
+  font-size: 7em;
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+#main__login {
+  text-align: center;
+}
+
+#main__signup {
+  text-align: center;
+}
+
+#link {
+  text-decoration: none;
+}
+
+#signup__button {
+  background-color: #f8f4e3;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#signup__header {
+    font-size: 2rem;
+}
