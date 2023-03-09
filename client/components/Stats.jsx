@@ -1,5 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import Chart from "./Chart";
+import "../../stylesheets/Stats.scss";
+import PageChart from "./PagesChart";
+import Star from "./Star";
+import StarChart from "./StarChart";
+import PubChart from "./PubChart";
 
 const Stats = () => {
   const location = useLocation();
@@ -7,13 +13,101 @@ const Stats = () => {
   let yourAvgRating = 0;
   let booksAvgRating = 0;
   let avgPageLength = 0;
-  let shortestBook;
-  let shortestAuth;
+  let shortestBook = "nothing";
+  let shortestAuth = "nobody";
   let shortestBookPages = Infinity;
-  let longestBook;
-  let longestAuth;
-  let longestBookLength = -Infinity;
+  let longestBook = "nothing";
+  let longestAuth = "nobody";
+  let longestBookLength = 0;
+  let twenty19 = 0;
+  let twenty20 = 0;
+  let twenty21 = 0;
+  let twenty22 = 0;
+  let twenty23 = 0;
+  let under100 = 0;
+  let under250 = 0;
+  let under500 = 0;
+  let under750 = 0;
+  let under1000 = 0;
+  let under1500 = 0;
+  let oneStar = 0;
+  let twoStar = 0;
+  let threeStar = 0;
+  let fourStar = 0;
+  let fiveStar = 0;
+  let twenty20s = 0;
+  let twenty10s = 0;
+  let thousands = 0;
+  let nineties = 0;
+  let old = 0;
   for (let i = 0; i < books.length; i++) {
+    const pubYear = Number(books[i].yearOfPub);
+    if (pubYear > 2019) {
+      twenty20s++;
+    }
+    if (pubYear < 2020 && pubYear > 2009) {
+      twenty10s++;
+    }
+    if (pubYear < 2010 && pubYear > 1999) {
+      thousands++;
+    }
+    if (pubYear < 2000 && pubYear > 1989) {
+      nineties++;
+    }
+    if (pubYear < 1990) {
+      old++;
+    }
+    const rating = Number(books[i].rating);
+    if (rating === 1) {
+      oneStar++;
+    }
+    if (rating === 2) {
+      twoStar++;
+    }
+    if (rating === 3) {
+      threeStar++;
+    }
+    if (rating === 4) {
+      fourStar++;
+    }
+    if (rating === 5) {
+      fiveStar++;
+    }
+    const pageCount = Number(books[i].pageCount);
+    if (pageCount <= 100) {
+      under100++;
+    }
+    if (pageCount > 100 && pageCount <= 250) {
+      under250++;
+    }
+    if (pageCount > 250 && pageCount <= 500) {
+      under500++;
+    }
+    if (pageCount > 500 && pageCount <= 750) {
+      under750++;
+    }
+    if (pageCount > 750 && pageCount <= 1000) {
+      under1000++;
+    }
+    if (pageCount > 1000 && pageCount <= 1500) {
+      under1500++;
+    }
+    const yearRead = books[i].dateRead.slice(0, 4);
+    if (Number(yearRead) === 2019) {
+      twenty19++;
+    }
+    if (Number(yearRead) === 2020) {
+      twenty20++;
+    }
+    if (Number(yearRead) === 2021) {
+      twenty21++;
+    }
+    if (Number(yearRead) === 2022) {
+      twenty22++;
+    }
+    if (Number(yearRead) === 2023) {
+      twenty23++;
+    }
     const yourRating = Number(books[i].rating);
     const pageLength = Number(books[i].pageCount);
     yourAvgRating += yourRating;
@@ -34,20 +128,87 @@ const Stats = () => {
   yourAvgRating = yourAvgRating / books.length;
   booksAvgRating = (booksAvgRating / books.length).toFixed(2);
   avgPageLength = Math.floor(avgPageLength / books.length);
+  if (isNaN(yourAvgRating) || isNaN(booksAvgRating) || isNaN(avgPageLength)) {
+    yourAvgRating = "n/a, because you haven't read anything yet :(";
+    booksAvgRating = "n/a, because you haven't read anything yet :(";
+    avgPageLength = "zero";
+  }
+  if (shortestBookPages === Infinity) {
+    shortestBookPages = 0;
+  }
+  const yearsOfReading = {
+    twenty19,
+    twenty20,
+    twenty21,
+    twenty22,
+    twenty23,
+  };
+  const pagesRead = {
+    under100,
+    under250,
+    under500,
+    under750,
+    under1000,
+    under1500,
+  };
+  const ratings = {
+    oneStar,
+    twoStar,
+    threeStar,
+    fourStar,
+    fiveStar,
+  };
+  const pubYears = {
+    twenty20s,
+    twenty10s,
+    thousands,
+    nineties,
+    old,
+  };
   return (
     <React.Fragment>
-      <h1>in stats</h1>
-      <p>your avg rating is {yourAvgRating}</p>
-      <p>you read avg rating {booksAvgRating}</p>
-      <p>your avg page count is {avgPageLength}</p>
-      <p>
-        the shorted u read is {shortestBook} its {shortestBookPages} by{" "}
-        {shortestAuth}
-      </p>
-      <p>
-        the longest u read is {longestBook} its {longestBookLength} by{" "}
-        {longestAuth}
-      </p>
+      <h1 id="stats__header">Welcome to your Stats Page!</h1>
+      <h2 id="stats__subheading">
+        Checkout the stats below for an in-depth look at some of your reading
+        habits!
+      </h2>
+      <div id="facts__div">
+        <p id="fun__facts">Fun Facts:</p>
+        <p id="fun__facts">
+          Your average rating is: {yourAvgRating} <Star />.
+        </p>
+        <p id="fun__facts">
+          The average rating of the books you read is: {booksAvgRating} <Star />
+          .
+        </p>
+        <p id="fun__facts">
+          The average length of the books you read is: {avgPageLength} pages.
+        </p>
+        <p id="fun__facts">
+          The shortest book you have read is: {shortestBook}, which was{" "}
+          {shortestBookPages} pages long, authored by {shortestAuth}.
+        </p>
+        <p id="fun__facts">
+          The longest book you have read is: {longestBook}, which was{" "}
+          {longestBookLength} pages long, authored by {longestAuth}.
+        </p>
+      </div>
+      <div className="chart">
+        <p>Your Reading over the past 5 years!</p>
+        <Chart props={yearsOfReading} />
+      </div>
+      <div className="chart">
+        <p>Some data on the length of books you read!</p>
+        <PageChart props={pagesRead} />
+      </div>
+      <div className="chart">
+        <p>Some data on how much you liked your books!</p>
+        <StarChart props={ratings} />
+      </div>
+      <div className="chart">
+        <p>How old are the books you read?</p>
+        <PubChart props={pubYears} />
+      </div>
     </React.Fragment>
   );
 };
