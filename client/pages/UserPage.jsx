@@ -4,6 +4,7 @@ import FileUploader from "../components/FileUploader";
 import Book from "../components/Book";
 import UnreadBook from "../components/UnreadBook";
 import "../../stylesheets/Userpage.scss";
+import { Link } from "react-router-dom";
 
 //THIS IS THE USERS OWN PERSONAL ACCOUNT PAGE, THE USE LOCATION IMPORT AT THE TOP IS WHAT ALLOWS US TO GET THE USER OBJECT THAT WE CREATED ON THE PREVIOUS LOGIN COMPONENT
 const UserPage = () => {
@@ -45,11 +46,19 @@ const UserPage = () => {
       <h1 id="user__header">Welcome to your bookshelf, {name}!</h1>
       <FileUploader props={location.state} onClick={onFileUpload} />
       {/* UPON A RERENDER WHEN THE STATE IS POPULATED WITH THE BOOKS, THESE TWO MAPS WILL RUN AND THAT WILL CREATE LISTS FOR ALL OUR BOOKS USING OUR BOOK COMPONENTS. THE REASON THERE ARE TWO COMPONENTS IS BECAUSE THE UNREAD BOOK DOESNT HAVE ALL THE SAME VALUES*/}
-      <section>
+      <div id="stats__div">
+        <p id="your__stats">Curious about what you have been reading?</p>
+        <button id="book__stats">
+          <Link state={readBooks} id="link" to="/stats">
+            Check Out Your Reading Stats!
+          </Link>
+        </button>
+      </div>
+      <section id='book__container'>
+        <span id="your__books">Your Read Books:</span>
         <button id="book__fetch" onClick={bookFetch}>
           Fetch My Books!
         </button>
-        <p id="your__books">Your Read Books:</p>
         {readBooks.map((book) => {
           return (
             <Book
