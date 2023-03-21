@@ -26,7 +26,17 @@ const Book = (props) => {
     <React.Fragment>
       <div>
         <ul className="my__list">
-          <li className="title">Title: {props.title}</li>
+          <li className="title">
+            Title: {props.title}{" "}
+            <a
+              id="learn__more"
+              href={`https://www.google.com/search?q=${props.title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn More!
+            </a>
+          </li>
           <li>By: {props.author}</li>
           <li>
             Your Rating: {props.rating} {usersStars}

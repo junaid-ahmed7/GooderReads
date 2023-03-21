@@ -4,7 +4,6 @@ import "../../stylesheets/Signup.scss";
 
 
 //COMPONENT RESPONSIBLE FOR ADDING NEW USERS TO THE DATA BASE
-
 const SignUp = () => {
   //FORM HANDLER, GETS INVOKED WHEN THE FORM IS SUBMITTED(SUBMIT BUTTON IN FORM PRESSED)
   const formHandler = (e) => {
@@ -56,12 +55,16 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <h1 id="signup__header">SignUp Page!</h1>
-      <button id='home__button'><Link id='link' to='/'>Go Back</Link></button>
+      <button id="home__button">
+        <Link id="link" to="/">
+          Go Back
+        </Link>
+      </button>
       <form method="post" onSubmit={formHandler} id="signup__form">
         <div id="signup__input">
-            <label>
-              First Name:<span> </span>
-            </label>
+          <label>
+            First Name:<span> </span>
+          </label>
           <input
             type="text"
             required
@@ -72,9 +75,9 @@ const SignUp = () => {
         </div>
 
         <div id="signup__input">
-            <label>
-              Last Name:<span> </span>
-            </label>
+          <label>
+            Last Name:<span> </span>
+          </label>
           <input
             type="text"
             required
@@ -85,9 +88,9 @@ const SignUp = () => {
         </div>
 
         <div id="signup__input">
-            <label>
-              Email Address:<span> </span>
-            </label>
+          <label>
+            Email Address:<span> </span>
+          </label>
           <input
             type="email"
             required
@@ -98,9 +101,9 @@ const SignUp = () => {
         </div>
 
         <div id="signup__input">
-            <label>
-              Age:<span> </span>
-            </label>
+          <label>
+            Age:<span> </span>
+          </label>
           <input
             placeholder="#"
             type="number"
@@ -111,9 +114,9 @@ const SignUp = () => {
         </div>
 
         <div id="signup__input">
-            <label>
-              Set A Password:<span> </span>
-            </label>
+          <label>
+            Set A Password:<span> </span>
+          </label>
           <input
             type="password"
             required
@@ -123,9 +126,9 @@ const SignUp = () => {
           />
         </div>
         <div id="signup__input">
-            <label>
-              Type Password Again:<span> </span>
-            </label>
+          <label>
+            Type Password Again:<span> </span>
+          </label>
           <input
             type="password"
             required

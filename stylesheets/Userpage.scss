@@ -5,15 +5,20 @@
   margin-left: 25px;
 }
 #book__container {
-    border-top: 1px solid bisque;
-    padding-top: 10px;
-
+  border-top: 1px solid bisque;
+  padding-top: 10px;
 }
 #book__fetch,
 #book__stats {
   background-color: #f8f4e3;
   padding: 0.5rem;
   border-radius: 10%;
+}
+#book__fetch,
+#book__stats:hover {
+  cursor: pointer;
+  background-color: #eee0cb;
+  transition: 0.7s;
 }
 
 #your__books {
@@ -27,4 +32,8 @@
 #stats__div {
   text-align: center;
   margin-bottom: 10px;
+}
+
+#book__div {
+  margin-top: 2rem;
 }

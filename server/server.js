@@ -1,15 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 const app = express();
 const PORT = 3000;
+dotenv.config();
+
+//AVOID MONGOOSE DEPRACATION WARNING, FOR LEGACY MONGOOSE VERSION
+mongoose.set("strictQuery", false);
+
+//GETTING MONGO DB URI FROM ENV
+const URI = process.env.MONGO_URI;
 
 //CONNECTING TO THE DATABASE
 mongoose
-  .connect(
-    "mongodb+srv://junaid:dzS50Os5DU3iP7hF@cluster0.vnwh8qf.mongodb.net/?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((res) => {
     console.log("MONGO CONNECTED");
   })

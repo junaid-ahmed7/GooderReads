@@ -1,15 +1,24 @@
 body {
-  background-color: #2D93AD;
+  background-color: #89B0AE;
   box-sizing: border-box;
+}
+#subscript {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 0.5rem;
+  text-align: center;
 }
 
 #main__header {
+  margin-top: -1rem;
   text-align: center;
   font-size: 7em;
   font-family: 'Noto Nastaliq Urdu', serif;
+  margin-bottom: -1rem;
 }
 
 #main__login {
+  margin-top: 7rem;
   text-align: center;
 }
 
@@ -18,14 +27,18 @@ body {
 }
 
 #link {
+  color: black;
   text-decoration: none;
 }
 
 #signup__button {
-  background-color: #f8f4e3;
-  &:hover {
-    cursor: pointer;
-  }
+  background-color: #FAF9F9;
+  color: black;
+}
+
+#signup__button:hover {
+  background-color: #EEE0CB;
+  transition: 0.7s;
 }
 
 #signup__header {

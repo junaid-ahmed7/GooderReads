@@ -1,5 +1,6 @@
 import BarChart from "react-bar-chart";
 import React from "react";
+import "../../../stylesheets/Chart.scss";
 
 //CHART FOR BOOKS READ BY YEAR OF READING
 const Chart = (props) => {
@@ -16,6 +17,7 @@ const Chart = (props) => {
     <React.Fragment>
       <div style={{ width: "50%" }}>
         <BarChart
+          className="bar"
           ylabel="Books"
           width={1000}
           margin={margin}

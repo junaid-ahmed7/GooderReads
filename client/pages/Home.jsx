@@ -8,8 +8,8 @@ import "../../stylesheets/Home.scss";
 const Home = () => {
   return (
     <React.Fragment>
-      <button></button>
-      <h1 id="main__header">کتاب</h1>
+      <h1 id="main__header">کتابیں</h1>
+      <p id='subscript'>a written or printed work consisting of pages glued or sewn together along one side and bound in covers.</p>
       <div id="main__login">
         <Login></Login>
       </div>

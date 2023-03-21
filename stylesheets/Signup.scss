@@ -24,6 +24,7 @@
   margin-top: 0.5rem;
   display: block;
   margin-bottom: 0.5rem;
+  border-radius: 10%;
 }
 
 #signup__button {
@@ -39,7 +40,11 @@
 
 #home__button {
   text-align: center;
-  background-color: #f8f4e3;
+  background-color: #FAF9F9;
   padding: 0.5rem;
   border-radius: 10%;
+}
+#home__button:hover {
+  background-color: #EEE0CB;
+  transition: 0.7s;
 }

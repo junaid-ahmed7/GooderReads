@@ -60,20 +60,22 @@ const UserPage = () => {
         <button id="book__fetch" onClick={bookFetch}>
           Fetch My Books!
         </button>
-        {readBooks.map((book) => {
-          return (
-            <Book
-              key={book.ISBN}
-              title={book.title}
-              author={book.author}
-              rating={book.rating}
-              avgRating={book.avgRating}
-              pageCount={book.pageCount}
-              yearOfPub={book.yearOfPub}
-              dateRead={book.dateRead}
-            ></Book>
-          );
-        })}
+        <div id='book__div'>
+          {readBooks.map((book) => {
+            return (
+              <Book
+                key={book.ISBN}
+                title={book.title}
+                author={book.author}
+                rating={book.rating}
+                avgRating={book.avgRating}
+                pageCount={book.pageCount}
+                yearOfPub={book.yearOfPub}
+                dateRead={book.dateRead}
+              ></Book>
+            );
+          })}
+        </div>
       </section>
       <section>
         <p id="your__books">Your Unread Books:</p>

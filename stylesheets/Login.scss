@@ -13,10 +13,11 @@
 }
 
 #login__button {
-  background-color: #f8f4e3;
-  &:hover {
-    cursor: pointer;
-  }
+  background-color: #FAF9F9;
+}
+#login__button:hover {
+  background-color: #EEE0CB;
+  transition: 0.7s;
 }
 
 #loginpass,
@@ -25,6 +26,7 @@
   width: 100%;
   padding-top: 5px;
   margin-top: 5px;
+  border-radius: 10%;
 }
 
 input::placeholder {
