@@ -11,6 +11,8 @@ Run npm install to install the necessary dependencies
 Create a .env file in the project root and set the following environment variables:
 MONGO_URI: Your MongodB database key. if you need any assistance to spin up a MongodB cluster, just reach out!
 
+![Alt text](public/Kitaab-SplashPage.png "Title")
+
 Usage
 To use the application, follow these steps:
 
@@ -22,7 +24,6 @@ Go to goodreads.com and follow the instructions to export your bookshelf
 Import your bookshelf from Goodreads by clicking the "Import Bookshelf" button and following the prompts
 View your reading stats by clicking the "My Stats Page" button
 
-
 Contributing
 If you'd like to contribute to the project id love that! please follow these steps:
 
@@ -31,7 +32,6 @@ Create a new branch for your changes
 Make your changes and commit them with a descriptive message
 Push your changes to your fork
 Create a pull request
-
 
 License
 This project is licensed under the MIT License. See the LICENSE file for more information.
