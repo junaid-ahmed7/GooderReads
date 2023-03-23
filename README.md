@@ -1,5 +1,12 @@
 # Kitaab کتاب
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/junaid-ahmed7/Kitaab)
+![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)
+![Contributions Welcome](https://img.shields.io/badge/Contributions-welcome-blue.svg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/junaid-ahmed-269002259/)
+
+<img src="./public/Kitaab-SplashPage.png" height=300/>
+
 Welcome to the Kitaab repository! Kitaab is a powerful full-stack project that allows book lovers to create an account, easily import their bookshelves from Goodreads, and generate insightful reading statistics. With Kitaab, you can gain a deeper understanding of your reading habits through unique visualizations, ratings, and more. This is only version 1 of the project, and we have many exciting updates planned for the future. So, join us on this journey of discovering more about ourselves through the books we love.
 
 Installation
@@ -10,8 +17,6 @@ Navigate to the project directory using a terminal or command prompt
 Run npm install to install the necessary dependencies
 Create a .env file in the project root and set the following environment variables:
 MONGO_URI: Your MongodB database key. if you need any assistance to spin up a MongodB cluster, just reach out!
-
-![Alt text](public/Kitaab-SplashPage.png "Title")
 
 Usage
 To use the application, follow these steps:
