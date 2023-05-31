@@ -1,5 +1,7 @@
 # Kitaab کتاب
 
+Take charge of your reading habits!
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/junaid-ahmed7/Kitaab)
 ![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)
 ![Contributions Welcome](https://img.shields.io/badge/Contributions-welcome-blue.svg)
